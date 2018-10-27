@@ -27,8 +27,48 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/ic_button_sync" />
+        app:srcCompat="@drawable/ic_button_sync"
+        app:layout_anchorGravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_vertical|right" />
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:theme="?attr/actionBarTheme"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_gravity="bottom|end"
+        android:id="@+id/toolbar2">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Space
+                android:id="@+id/space"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton"
+                android:button="@drawable/ic_menu_home"
+                android:checked="true"
+                android:layout_toStartOf="@id/space" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButton2"
+                android:button="@drawable/ic_button_favourite"
+                android:layout_toEndOf="@id/space"
+                android:checked="false" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
 
 </android.support.design.widget.CoordinatorLayout>

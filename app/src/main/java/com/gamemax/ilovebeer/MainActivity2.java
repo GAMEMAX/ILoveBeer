@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -67,6 +68,61 @@ public class MainActivity2 extends AppCompatActivity
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Toolbar secondToolbar = (Toolbar) findViewById(R.id.toolbar2);
+        //secondToolbar.inflateMenu(R.menu.second_toolbar_menu);
+        final RadioButton homeBtn = (RadioButton) findViewById(R.id.radioButton);
+        final RadioButton favBtn = (RadioButton) findViewById(R.id.radioButton2);
+        homeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (recyclerViewAdapter.hasToBeFilteredToFav)
+                    recyclerViewAdapter.filterFavs(false);
+                getSupportActionBar().setTitle("I Love Beer");
+                fab.setEnabled(true);
+                fab.setVisibility(View.VISIBLE);
+                favBtn.setChecked(false);
+            }
+        });
+        favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!recyclerViewAdapter.hasToBeFilteredToFav)
+                    recyclerViewAdapter.filterFavs(true);
+                getSupportActionBar().setTitle("Favourites");
+                fab.setEnabled(false);
+                fab.setVisibility(View.INVISIBLE);
+                homeBtn.setChecked(false);
+            }
+        });
+        /*secondToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // Handle navigation view item clicks here.
+                int id = item.getItemId();
+
+                switch (id) {
+                    case R.id.nav_home:
+                        if (recyclerViewAdapter.hasToBeFilteredToFav)
+                            recyclerViewAdapter.filterFavs(false);
+                        getSupportActionBar().setTitle("I Love Beer");
+                        fab.setEnabled(true);
+                        fab.setVisibility(View.VISIBLE);
+                        break;
+                    case R.id.nav_fav:
+                        if (!recyclerViewAdapter.hasToBeFilteredToFav)
+                            recyclerViewAdapter.filterFavs(true);
+                        getSupportActionBar().setTitle("Favourites");
+                        fab.setEnabled(false);
+                        fab.setVisibility(View.INVISIBLE);
+                        break;
+
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
