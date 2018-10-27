@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_about"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.gamemax.ilovebeer.About"
+    tools:showIn="@layout/activity_about"
+    android:gravity="center_vertical|center_horizontal"
+    android:hapticFeedbackEnabled="true"
+    android:background="@drawable/background_cut">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingBottom="20dp"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingTop="20dp"
+        android:weightSum="1"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:background="@drawable/round_corners_shape"
+        android:elevation="10dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <TextView
+            android:text="@string/title_activity_about"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView2"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#ffd3d3d3"
+            android:id="@+id/imageView3"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:text="@string/about_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_marginBottom="10dp"
+            android:gravity="center_horizontal" />
+
+        <!--<Button
+            android:text="Donate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/donateButton"
+            android:background="@color/colorAccent"
+            android:textColor="?android:attr/textColorPrimaryInverse" />-->
+    </LinearLayout>
+</RelativeLayout>
