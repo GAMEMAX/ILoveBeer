@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.transition.Visibility;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -36,17 +37,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity2 extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, SwipeRefreshLayout.OnRefreshListener{
     List<GetDataAdapter> GetDataAdapter1;
 
-
+    SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView recyclerView;
 
     RecyclerView.LayoutManager recyclerViewlayoutManager;
 
     RecyclerViewAdapter recyclerViewAdapter;
-
-    ProgressBar progressBar;
 
     String GET_JSON_DATA_HTTP_URL = "http://ilovebeer.altervista.org/jsonData.php";
     String JSON_ID = "id";
@@ -55,7 +54,6 @@ public class MainActivity2 extends AppCompatActivity
     String JSON_TYPE = "type";
     String JSON_DESCRIPTION = "description";
     String JSON_IMAGEPATH = "imageDir";
-    FloatingActionButton fab;
 
     JsonArrayRequest jsonArrayRequest ;
 
@@ -79,8 +77,6 @@ public class MainActivity2 extends AppCompatActivity
                 if (recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(false);
                 getSupportActionBar().setTitle("I Love Beer");
-                fab.setEnabled(true);
-                fab.setVisibility(View.VISIBLE);
                 favBtn.setChecked(false);
             }
         });
@@ -89,9 +85,7 @@ public class MainActivity2 extends AppCompatActivity
             public void onClick(View v) {
                 if (!recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(true);
-                getSupportActionBar().setTitle("Favourites");
-                fab.setEnabled(false);
-                fab.setVisibility(View.INVISIBLE);
+                getSupportActionBar().setTitle("Favorites");
                 homeBtn.setChecked(false);
             }
         });
@@ -134,26 +128,43 @@ public class MainActivity2 extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         GetDataAdapter1 = new ArrayList<>();
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+        // SwipeRefreshLayout
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
+        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_orange_dark,
+                android.R.color.holo_blue_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_blue_dark);
 
-        progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-        recyclerViewlayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(recyclerViewlayoutManager);
+        mSwipeRefreshLayout.post(new Runnable() {
 
-        progressBar.setVisibility(View.VISIBLE);
-        JSON_DATA_WEB_CALL();
-
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, R.string.syncing_process_string, Snackbar.LENGTH_SHORT)
-                        .setAction("Action", null).show();
-                progressBar.setVisibility(View.VISIBLE);
+            public void run() {
+
+                mSwipeRefreshLayout.setRefreshing(true);
+
                 GetDataAdapter1.clear();
                 JSON_DATA_WEB_CALL();
             }
         });
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+
+        recyclerViewlayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(recyclerViewlayoutManager);
+
+        mSwipeRefreshLayout.setRefreshing(true);
+        JSON_DATA_WEB_CALL();
+    }
+
+    /**
+     * This method is called when swipe refresh is pulled down
+     */
+    @Override
+    public void onRefresh() {
+
+        GetDataAdapter1.clear();
+        JSON_DATA_WEB_CALL();
     }
 
     @Override
@@ -181,14 +192,15 @@ public class MainActivity2 extends AppCompatActivity
 
 
     public void JSON_DATA_WEB_CALL(){
-
+        mSwipeRefreshLayout.setRefreshing(true);
         jsonArrayRequest = new JsonArrayRequest(GET_JSON_DATA_HTTP_URL,
 
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
 
-                        progressBar.setVisibility(View.GONE);
+
+                        mSwipeRefreshLayout.setRefreshing(false);
 
                         JSON_PARSE_DATA_AFTER_WEBCALL(response);
                     }
@@ -269,8 +281,6 @@ public class MainActivity2 extends AppCompatActivity
                 if(recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(false);
                 getSupportActionBar().setTitle("I Love Beer");
-                fab.setEnabled(true);
-                fab.setVisibility(View.VISIBLE);
                 break;
             case R.id.nav_about:
                 Intent intent = new Intent(MainActivity2.this, About.class);
@@ -280,8 +290,6 @@ public class MainActivity2 extends AppCompatActivity
                 if(!recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(true);
                 getSupportActionBar().setTitle("Favourites");
-                fab.setEnabled(false);
-                fab.setVisibility(View.INVISIBLE);
                 break;
             /*case R.id.nav_donate:
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/AndEsposito"));
