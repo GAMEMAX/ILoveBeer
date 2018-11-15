@@ -11,6 +11,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.SwitchCompat;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -126,6 +127,13 @@ public class MainActivity2 extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Menu menu = navigationView.getMenu();
+        MenuItem menuItem = menu.findItem(R.id.nav_home);
+        View actionView=MenuItemCompat.getActionView(menuItem);
+
+        ((SwitchCompat) actionView.findViewById(R.id.switcher)).setChecked(true);
+
         GetDataAdapter1 = new ArrayList<>();
 
         // SwipeRefreshLayout
@@ -278,19 +286,17 @@ public class MainActivity2 extends AppCompatActivity
         switch (id)
         {
             case R.id.nav_home:
-                if(recyclerViewAdapter.hasToBeFilteredToFav)
-                    recyclerViewAdapter.filterFavs(false);
-                getSupportActionBar().setTitle("I Love Beer");
+                // Do nothing
                 break;
             case R.id.nav_about:
                 Intent intent = new Intent(MainActivity2.this, About.class);
                 startActivity(intent);
                 break;
-            case R.id.nav_fav:
+            /*case R.id.nav_fav:
                 if(!recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(true);
                 getSupportActionBar().setTitle("Favourites");
-                break;
+                break;*/
             /*case R.id.nav_donate:
                 intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/AndEsposito"));
                 startActivity(intent);
