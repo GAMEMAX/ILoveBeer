@@ -13,4 +13,5 @@
     <string name="removed_from_favourites">Rimossa dai preferiti</string>
     <string name="syncing_process_string">Aggiornamento&#8230;</string>
     <string name="no_fav_beer">NESSUN PREFERITO</string>
+    <string name="fav_screen_title">Preferiti</string>
 </resources>

@@ -76,7 +76,7 @@ public class MainActivity2 extends AppCompatActivity
             public void onClick(View v) {
                 if (recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(false);
-                getSupportActionBar().setTitle("I Love Beer");
+                getSupportActionBar().setTitle(R.string.app_name);
                 favBtn.setChecked(false);
             }
         });
@@ -85,7 +85,7 @@ public class MainActivity2 extends AppCompatActivity
             public void onClick(View v) {
                 if (!recyclerViewAdapter.hasToBeFilteredToFav)
                     recyclerViewAdapter.filterFavs(true);
-                getSupportActionBar().setTitle("Favorites");
+                getSupportActionBar().setTitle(R.string.fav_screen_title);
                 homeBtn.setChecked(false);
             }
         });

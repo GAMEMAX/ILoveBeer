@@ -33,5 +33,6 @@
     <string name="added_to_favourites">Added to favourites</string>
     <string name="removed_from_favourites">Removed from favourites</string>
     <string name="no_fav_beer">NO FAVOURITE BEERS</string>
+    <string name="fav_screen_title">Favourites</string>
 
 </resources>
