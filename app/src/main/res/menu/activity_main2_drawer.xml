@@ -7,7 +7,9 @@
         android:title="@string/nav_drawer_item_home"
         android:icon="@drawable/home_unselected"
         app:showAsAction="always"
-        android:checked="true" />
+        android:checked="true"
+        android:checkable="true"
+        android:enabled="true" />
 
     <item android:title="@string/nav_drawer_group_others">
         <menu>
