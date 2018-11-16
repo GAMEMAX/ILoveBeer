@@ -128,12 +128,6 @@ public class MainActivity2 extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Menu menu = navigationView.getMenu();
-        MenuItem menuItem = menu.findItem(R.id.nav_home);
-        View actionView=MenuItemCompat.getActionView(menuItem);
-
-        ((SwitchCompat) actionView.findViewById(R.id.switcher)).setChecked(true);
-
         GetDataAdapter1 = new ArrayList<>();
 
         // SwipeRefreshLayout
