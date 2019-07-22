@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="about_information">Sviluppatore: Andrea Esposito\n\n        \n\n        GAMEMAX Entertainment</string>
-    <string name="action_search">Cerca</string>
-    <string name="action_settings">Opzioni</string>
-    <string name="alcohol_title">"Alcol (% Vol.): "</string>
-    <string name="nav_drawer_group_others">Altro</string>
-    <string name="nav_drawer_item_about">Informazioni</string>
-    <string name="nav_drawer_item_favourites">Preferiti</string>
-    <string name="title_activity_about">Informazioni</string>
+    <string name="about">Informazioni</string>
+    <string name="favourites">Preferiti</string>
+    <string name="alcohol_title">Alcol (% Vol.):</string>
+    <string name="no_fav_beer">NESSUN PREFERITO</string>
+    <string name="about_information">Sviluppatore: Andrea Esposito</string>
     <string name="type_title">"Tipo: "</string>
+    <string name="beer_image">Immagine dell birra</string>
     <string name="added_to_favourites">Aggiunta ai preferiti</string>
     <string name="removed_from_favourites">Rimossa dai preferiti</string>
-    <string name="syncing_process_string">Aggiornamento&#8230;</string>
-    <string name="no_fav_beer">NESSUN PREFERITO</string>
+    <string name="are_you_sure">Sei sicuro?</string>
+    <string name="are_you_sure_to_exit">Sei sicuro di voler uscire?</string>
 </resources>
