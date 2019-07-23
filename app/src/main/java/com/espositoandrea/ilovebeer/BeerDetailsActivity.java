@@ -25,7 +25,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Objects;
 
-public class BeerDetails extends AppCompatActivity {
+public class BeerDetailsActivity extends AppCompatActivity {
 
     boolean isFavourite;
 

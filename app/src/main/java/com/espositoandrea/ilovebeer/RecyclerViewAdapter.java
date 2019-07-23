@@ -56,7 +56,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             itemView.setOnClickListener(v -> {
                 if (!beerName.equals(context.getString(R.string.no_fav_beer))) {
-                    Intent intent = new Intent(context, BeerDetails.class);
+                    Intent intent = new Intent(context, BeerDetailsActivity.class);
                     Bundle b = new Bundle();
                     b.putInt("id", id); //Your id
                     b.putString("name", beerName);

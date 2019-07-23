@@ -1,11 +1,9 @@
 package com.espositoandrea.ilovebeer;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +13,10 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.Objects;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     HomeFragment homeFragment = new HomeFragment();
-    AboutActivity aboutFragment = new AboutActivity();
+    AboutFragment aboutFragment = new AboutFragment();
     Fragment activeFragment;
     FragmentManager fragmentManager;
 
