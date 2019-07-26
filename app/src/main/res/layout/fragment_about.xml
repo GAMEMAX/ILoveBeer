@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".AboutFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:layout_gravity="top"/>
+
     <RelativeLayout
         android:id="@+id/content_about"
         android:layout_width="match_parent"

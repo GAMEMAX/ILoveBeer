@@ -5,15 +5,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
 
     HomeFragment homeFragment = new HomeFragment();
     AboutFragment aboutFragment = new AboutFragment();
@@ -57,65 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentManager.beginTransaction().add(R.id.content_container, aboutFragment, "2").hide(aboutFragment).commit();
         fragmentManager.beginTransaction().add(R.id.content_container, homeFragment, "1").commit();
         activeFragment = homeFragment;
-
-
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
-//
-//        final MenuItem searchItem = menu.findItem(R.id.action_search);
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                recyclerViewAdapter.filter(query);
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                recyclerViewAdapter.filter(newText);
-//                return false;
-//            }
-//        });
-
-        return true;
-    }
-
-
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
-//        int id = item.getItemId();
-//
-//        switch (id)
-//        {
-//            case R.id.nav_home:
-//                // Do nothing
-//                break;
-//            case R.id.nav_about:
-//                Intent intent = new Intent(MainActivity2.this, About.class);
-//                startActivity(intent);
-//                break;
-//            /*case R.id.nav_fav:
-//                if(!recyclerViewAdapter.hasToBeFilteredToFav)
-//                    recyclerViewAdapter.filterFavs(true);
-//                getSupportActionBar().setTitle("Favourites");
-//                break;*/
-//            /*case R.id.nav_donate:
-//                intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.paypal.me/AndEsposito"));
-//                startActivity(intent);
-//                break;*/
-//
-//            default:
-//                break;
-//        }
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     @Override
     public void onBackPressed() {
@@ -132,5 +75,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             navView.setSelectedItemId(R.id.navigation_home);
         }
     }
+
 
 }

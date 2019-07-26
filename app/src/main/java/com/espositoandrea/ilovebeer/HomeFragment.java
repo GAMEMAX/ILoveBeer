@@ -1,20 +1,24 @@
 package com.espositoandrea.ilovebeer;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
@@ -42,7 +46,7 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
     RecyclerViewAdapter recyclerViewAdapter;
 
-    private Context mContext;
+    private AppCompatActivity mContext;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -53,8 +57,8 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_home, container, false);
-
-        mContext = Objects.requireNonNull(getActivity());
+        setHasOptionsMenu(true);
+        mContext = (AppCompatActivity) Objects.requireNonNull(getActivity());
 
         GetDataAdapter1 = new ArrayList<>();
 
@@ -76,6 +80,9 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
 
         RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(mContext);
         recyclerView.setLayoutManager(recyclerViewLayoutManager);
+
+        Toolbar mToolbar = v.findViewById(R.id.toolbar);
+        mContext.setSupportActionBar(mToolbar);
 
         mSwipeRefreshLayout.setRefreshing(true);
         JSON_DATA_WEB_CALL();
@@ -142,4 +149,25 @@ public class HomeFragment extends Fragment implements SwipeRefreshLayout.OnRefre
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         recyclerViewAdapter.onActivityResult(requestCode, resultCode, data);
     }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.top_toolbar_menu, menu);
+        MenuItem mSearch = menu.findItem(R.id.action_search);
+        SearchView mSearchView = (SearchView) mSearch.getActionView();
+        mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                recyclerViewAdapter.filter(newText);
+                return false;
+            }
+        });
+    }
+
 }
