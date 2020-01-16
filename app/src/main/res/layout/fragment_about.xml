@@ -4,20 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_cut"
     tools:context=".AboutFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/ToolbarColoredBackArrow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="top"
         android:background="?attr/colorPrimary"
-        android:layout_gravity="top"/>
+        app:popupTheme="@style/AppTheme" />
 
     <RelativeLayout
         android:id="@+id/content_about"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_cut"
         android:gravity="center_vertical|center_horizontal">
 
         <LinearLayout
